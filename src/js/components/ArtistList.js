@@ -8,10 +8,11 @@ export default class ArtistList extends React.Component {
     const [minRate, maxRate] = activeFilters.get('rate').toJS();
 
     return artists.filter((artist) => {
-      return artist.get('age') > minAge
-        && artist.get('age') < maxAge
-        && artist.get('rate') > minRate
-        && artist.get('rate') < maxRate;
+      return artist.get('age') >= minAge
+        && artist.get('age') <= maxAge
+        && artist.get('rate') >= minRate
+        && artist.get('rate') <= maxRate
+        && activeFilters.getIn(['gender', artist.get('gender')]);
     }).map((artist) => {
       return (
         <Artist

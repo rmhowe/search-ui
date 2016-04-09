@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactSlider from 'react-slider';
+import Immutable from 'immutable';
 
 export default class Filters extends React.Component {
-  filterChange = (value) => {
-    console.log(value);
+  rangeFilterChange = (filter, value) => {
+    this.props.handleFilterChange(filter, Immutable.List(value));
   };
 
-  getSlider(type, currentMin, currentMax) {
-    const values = this.props.artists.map(artist => artist.get(type)).toJS();
+  genderFilterChange = (gender, event) => {
+    this.props.handleGenderFilterChange(gender, event.target.checked);
+  };
+
+  getSlider(filter, currentMin, currentMax) {
+    const values = this.props.artists.map(artist => artist.get(filter)).toJS();
     if (values.length > 0) {
       const min = Math.min.apply(Math, values);
       const max = Math.max.apply(Math, values);
@@ -19,7 +24,7 @@ export default class Filters extends React.Component {
           max={max}
           defaultValue={[min, max]}
           withBars={true}
-          onAfterChange={this.filterChange}
+          onChange={this.rangeFilterChange.bind(this, filter)}
         />
       );
     }
@@ -42,9 +47,19 @@ export default class Filters extends React.Component {
           {rateSlider}
         </div>
         <div className="filters__filter">
-          Gender:
-          <input type="checkbox"/>
-          <input type="checkbox"/>
+          Gender<br/>
+          <span className="filters__gender-label">M</span>
+          <input
+            type="checkbox"
+            checked={this.props.activeFilters.get('gender').get('M')}
+            onChange={this.genderFilterChange.bind(this, 'M')}
+          />
+          <span className="filters__gender-label">F</span>
+          <input
+            type="checkbox"
+            checked={this.props.activeFilters.get('gender').get('F')}
+            onChange={this.genderFilterChange.bind(this, 'F')}
+          />
         </div>
       </div>
     );

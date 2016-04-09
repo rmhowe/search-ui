@@ -7,7 +7,8 @@ import Artist from '../components/Artist';
 import ReactSlider from 'react-slider';
 import {
   fetchData,
-  setFilter
+  setFilter,
+  setGenderFilter
 } from '../actions';
 
 
@@ -22,7 +23,6 @@ class App extends React.Component {
     const artists = this.props.artists;
     this.props.dispatch(setFilter('age', this.getMinMax('age')));
     this.props.dispatch(setFilter('rate', this.getMinMax('rate')));
-    this.props.dispatch(setFilter('gender', Immutable.List('M', 'F')));
   };
 
   getMinMax(type) {
@@ -36,6 +36,10 @@ class App extends React.Component {
     this.props.dispatch(setFilter(filter, value));
   };
 
+  handleGenderFilterChange = (gender, value) => {
+    this.props.dispatch(setGenderFilter(gender, value));
+  };
+
   render() {
     return (
       <div className="app">
@@ -44,6 +48,7 @@ class App extends React.Component {
             artists={this.props.artists}
             activeFilters={this.props.activeFilters}
             handleFilterChange={this.handleFilterChange}
+            handleGenderFilterChange={this.handleGenderFilterChange}
           />
           <ArtistList
             artists={this.props.artists}

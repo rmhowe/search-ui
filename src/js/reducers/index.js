@@ -3,17 +3,23 @@ import Immutable from 'immutable';
 
 import {
   SET_FILTER,
+  SET_GENDER_FILTER,
   RECEIVE_DATA
 } from '../constants';
 
-function activeFilters(state = Immutable.Map({
-  age: Immutable.List(),
-  rate: Immutable.List(),
-  gender: Immutable.List()
+function activeFilters(state = Immutable.fromJS({
+  age: [],
+  rate: [],
+  gender: {
+    M: true,
+    F: true
+  }
 }), action) {
   switch (action.type) {
     case SET_FILTER:
       return state.set(action.payload.filter, action.payload.value);
+    case SET_GENDER_FILTER:
+      return state.setIn(['gender', action.payload.gender], action.payload.value);
     default:
       return state;
   }

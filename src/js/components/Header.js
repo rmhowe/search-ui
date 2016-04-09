@@ -10,6 +10,7 @@ export default class Header extends React.Component {
           artists={this.props.artists}
           activeFilters={this.props.activeFilters}
           handleFilterChange={this.props.handleFilterChange}
+          handleGenderFilterChange={this.props.handleGenderFilterChange}
         />
       </div>
     );
