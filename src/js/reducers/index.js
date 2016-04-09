@@ -6,7 +6,11 @@ import {
   RECEIVE_DATA
 } from '../constants';
 
-function activeFilters(state = Immutable.Map(), action) {
+function activeFilters(state = Immutable.Map({
+  age: Immutable.List(),
+  rate: Immutable.List(),
+  gender: Immutable.List()
+}), action) {
   switch (action.type) {
     case SET_FILTER:
       return state.set(action.payload.filter, action.payload.value);

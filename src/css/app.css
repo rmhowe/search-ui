@@ -2,3 +2,9 @@
 
 @import 'layout/base.css';
 @import 'layout/main.css';
+
+@import 'components/Artist.css';
+@import 'components/ArtistList.css';
+@import 'components/Header.css';
+@import 'components/Filters.css';
+@import 'components/RangeSlider.css';

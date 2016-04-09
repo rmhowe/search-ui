@@ -1,0 +1,16 @@
+.header {
+  position: fixed;
+  width: 100%;
+  height: $header-height;
+  background-color: white;
+  border-bottom: 1px solid $header-border-color;
+}
+
+.header__title {
+  padding: 17px;
+  width: 25%;
+  height: 100%;
+  border-right: 1px solid $header-border-color;
+  float: left;
+  font-size: 1.3em;
+}

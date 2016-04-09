@@ -1,0 +1,22 @@
+.filters {
+  padding: 10px 0;
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid $header-border-color;
+  float: left;
+}
+
+.filters__filter {
+  padding: 0 20px;
+  width: 33%;
+  height: 100%;
+  float: left;
+  border-right: 1px solid $header-border-color;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.filters__filter:last-child {
+  border-right: none;
+}

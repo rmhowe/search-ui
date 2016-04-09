@@ -1,0 +1,12 @@
+.artist {
+  margin: 0.5%;
+  padding: 10px;
+  width: 24%;
+  float: left;
+  background-color: white;
+}
+
+.artist__label {
+  display: inline-block;
+  font-weight: bold;
+}
