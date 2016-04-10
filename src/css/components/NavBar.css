@@ -1,28 +1,25 @@
-.header {
-  position: fixed;
+.nav-bar {
   width: 100%;
-  height: $header-height;
-  background-color: white;
-  border-bottom: 1px solid $header-border-color;
+  height: 100%;
 }
 
-.header__title {
+.nav-bar__title {
   padding: 17px;
-  width: 25%;
+  width: 20%;
   height: 100%;
   border-right: 1px solid $header-border-color;
   float: left;
   font-size: 1.3em;
 }
 
-.header__map-toggle {
+.nav-bar__map-toggle {
   position: relative;
-  width: 25%;
+  width: 20%;
   height: 100%;
   float: left;
 }
 
-.header__map-toggle-text {
+.nav-bar__map-toggle-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,7 +28,7 @@
   transition: all 200ms;
 }
 
-.header__map-toggle-text:hover {
+.nav-bar__map-toggle-text:hover {
   cursor: pointer;
   color: #999;
 }

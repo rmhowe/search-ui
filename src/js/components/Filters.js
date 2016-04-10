@@ -1,8 +1,18 @@
 import React from 'react';
 import ReactSlider from 'react-slider';
 import Immutable from 'immutable';
+import OrderBy from './OrderBy';
 
 export default class Filters extends React.Component {
+  static propTypes = {
+    artists: React.PropTypes.object.isRequired,
+    filters: React.PropTypes.object.isRequired,
+    orderBy: React.PropTypes.object.isRequired,
+    handleFilterChange: React.PropTypes.func.isRequired,
+    handleGenderFilterChange: React.PropTypes.func.isRequired,
+    handleOrderByChange: React.PropTypes.func.isRequired
+  };
+
   rangeFilterChange = (filter, value) => {
     this.props.handleFilterChange(filter, Immutable.List(value));
   };
@@ -31,8 +41,8 @@ export default class Filters extends React.Component {
   }
 
   render() {
-    const [currentMinAge, currentMaxAge] = this.props.activeFilters.get('age').toJS();
-    const [currentMinRate, currentMaxRate] = this.props.activeFilters.get('rate').toJS();
+    const [currentMinAge, currentMaxAge] = this.props.filters.get('age').toJS();
+    const [currentMinRate, currentMaxRate] = this.props.filters.get('rate').toJS();
     const ageSlider = this.getSlider('age', currentMinAge, currentMaxAge);
     const rateSlider = this.getSlider('rate', currentMinRate, currentMaxRate);
 
@@ -51,14 +61,20 @@ export default class Filters extends React.Component {
           <span className="filters__gender-label">M</span>
           <input
             type="checkbox"
-            checked={this.props.activeFilters.get('gender').get('M')}
+            checked={this.props.filters.get('gender').get('M')}
             onChange={this.genderFilterChange.bind(this, 'M')}
           />
           <span className="filters__gender-label">F</span>
           <input
             type="checkbox"
-            checked={this.props.activeFilters.get('gender').get('F')}
+            checked={this.props.filters.get('gender').get('F')}
             onChange={this.genderFilterChange.bind(this, 'F')}
+          />
+        </div>
+        <div className="filters__order-by">
+          <OrderBy
+            orderBy={this.props.orderBy}
+            handleOrderByChange={this.props.handleOrderByChange}
           />
         </div>
       </div>

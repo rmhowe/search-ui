@@ -30,7 +30,7 @@ export default class ArtistMap extends React.Component {
         }
         googleMapElement={
           <GoogleMap
-            defaultZoom={11}
+            defaultZoom={12}
             defaultCenter={{ lat: 51.5074, lng: -0.1 }}
           >
             {markers}

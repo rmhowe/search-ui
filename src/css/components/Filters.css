@@ -1,14 +1,15 @@
 .filters {
   padding: 10px 0;
-  width: 50%;
+  width: 60%;
   height: 100%;
   border-right: 1px solid $header-border-color;
   float: left;
 }
 
-.filters__filter {
+.filters__filter,
+.filters__order-by {
   padding: 0 20px;
-  width: 33%;
+  width: 25%;
   height: 100%;
   float: left;
   border-right: 1px solid $header-border-color;
@@ -17,7 +18,7 @@
   color: #666;
 }
 
-.filters__filter:last-child {
+.filters__order-by {
   border-right: none;
 }
 

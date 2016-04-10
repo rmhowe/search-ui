@@ -3,18 +3,42 @@ import ArtistListItem from './ArtistListItem';
 import ArtistMap from './ArtistMap';
 
 export default class Artists extends React.Component {
+  static propTypes = {
+    artists: React.PropTypes.object.isRequired,
+    filters: React.PropTypes.object.isRequired,
+    orderBy: React.PropTypes.object.isRequired,
+    showMap: React.PropTypes.bool.isRequired
+  }
+
   getFilteredArtists() {
-    const { artists, activeFilters } = this.props;
-    const [minAge, maxAge] = activeFilters.get('age').toJS();
-    const [minRate, maxRate] = activeFilters.get('rate').toJS();
+    const { artists, filters } = this.props;
+    const [minAge, maxAge] = filters.get('age').toJS();
+    const [minRate, maxRate] = filters.get('rate').toJS();
 
     return artists.filter((artist) => {
       return artist.get('age') >= minAge
         && artist.get('age') <= maxAge
         && artist.get('rate') >= minRate
         && artist.get('rate') <= maxRate
-        && activeFilters.getIn(['gender', artist.get('gender')]);
+        && filters.getIn(['gender', artist.get('gender')]);
     });
+  }
+
+  orderArtistList(artists) {
+    const { orderBy } = this.props;
+    const value = orderBy.get('value');
+    const ascending = orderBy.get('ascending');
+    if (value && ascending) {
+      return artists.sort((artistA, artistB) => {
+        return artistA.get(value) - artistB.get(value);
+      });
+    } else if (value && !ascending) {
+      return artists.sort((artistA, artistB) => {
+        return artistB.get(value) - artistA.get(value);
+      });
+    } else {
+      return artists;
+    }
   }
 
   generateArtistList(artists) {
@@ -46,7 +70,8 @@ export default class Artists extends React.Component {
     if (this.props.showMap) {
       content = this.generateArtistMap(filteredArtists);
     } else {
-      content = this.generateArtistList(filteredArtists);
+      const orderedArtists = this.orderArtistList(filteredArtists);
+      content = this.generateArtistList(orderedArtists);
     }
 
     return (

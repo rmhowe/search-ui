@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import {
   SET_FILTER,
   SET_GENDER_FILTER,
+  SET_ORDER_BY,
   TOGGLE_MAP,
   REQUEST_DATA,
   RECEIVE_DATA
@@ -24,6 +25,16 @@ export function setGenderFilter(gender, value) {
     payload: {
       gender,
       value
+    }
+  };
+}
+
+export function setOrderBy(value, ascending) {
+  return {
+    type: SET_ORDER_BY,
+    payload: {
+      value,
+      ascending
     }
   };
 }

@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 import Artists from '../components/Artists';
 import ReactSlider from 'react-slider';
 import {
   fetchData,
   setFilter,
   setGenderFilter,
+  setOrderBy,
   toggleMap
 } from '../actions';
 
@@ -40,6 +41,10 @@ class App extends React.Component {
     this.props.dispatch(setGenderFilter(gender, value));
   };
 
+  handleOrderByChange = (value, ascending) => {
+    this.props.dispatch(setOrderBy(value, ascending));
+  };
+
   handleToggleMap = () => {
     this.props.dispatch(toggleMap());
   };
@@ -47,19 +52,26 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Header
-          artists={this.props.artists}
-          activeFilters={this.props.activeFilters}
-          showMap={this.props.showMap}
-          handleFilterChange={this.handleFilterChange}
-          handleGenderFilterChange={this.handleGenderFilterChange}
-          handleToggleMap={this.handleToggleMap}
-        />
-        <Artists
-          artists={this.props.artists}
-          activeFilters={this.props.activeFilters}
-          showMap={this.props.showMap}
-        />
+        <header className="header">
+          <NavBar
+            artists={this.props.artists}
+            filters={this.props.searchModifiers.get('filters')}
+            orderBy={this.props.searchModifiers.get('orderBy')}
+            showMap={this.props.showMap}
+            handleFilterChange={this.handleFilterChange}
+            handleGenderFilterChange={this.handleGenderFilterChange}
+            handleOrderByChange={this.handleOrderByChange}
+            handleToggleMap={this.handleToggleMap}
+          />
+        </header>
+        <section className="main-content">
+          <Artists
+            artists={this.props.artists}
+            filters={this.props.searchModifiers.get('filters')}
+            orderBy={this.props.searchModifiers.get('orderBy')}
+            showMap={this.props.showMap}
+          />
+        </section>
       </div>
     );
   }
@@ -67,7 +79,7 @@ class App extends React.Component {
 
 function select(state) {
   return {
-    activeFilters: state.activeFilters,
+    searchModifiers: state.searchModifiers,
     artists: state.artists,
     showMap: state.showMap
   };
