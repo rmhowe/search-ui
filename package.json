@@ -19,6 +19,7 @@
     "font-awesome": "^4.5.0",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.9.0",
     "normalize.css": "^3.0.3",
     "postcss-cssnext": "^2.5.1",
     "postcss-import": "^8.0.2",

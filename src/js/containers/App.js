@@ -1,23 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
+import throttle from 'lodash/throttle';
 import NavBar from '../components/NavBar';
 import Artists from '../components/Artists';
 import ReactSlider from 'react-slider';
 import {
   fetchData,
+  setSmallBrowserMode,
   setFilter,
   setGenderFilter,
   setOrderBy,
   toggleMap
 } from '../actions';
+import { SMALL_BROWSER } from '../constants';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.checkBrowserSize = throttle(this.checkBrowserSize, 300);
+  }
+
   componentDidMount() {
+    this.checkBrowserSize();
     this.props.dispatch(fetchData('data/artists.json')).then(() => {
       this.setInitialFilters();
     });
+    window.addEventListener('resize', this.checkBrowserSize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.checkBrowserSize);
+  }
+
+  checkBrowserSize = () => {
+    if (window.innerWidth <= SMALL_BROWSER && !this.props.smallBrowserMode) {
+      this.props.dispatch(setSmallBrowserMode(true));
+    } else if (window.innerWidth > SMALL_BROWSER && this.props.smallBrowserMode) {
+      this.props.dispatch(setSmallBrowserMode(false));
+    }
   }
 
   setInitialFilters = () => {
@@ -54,6 +76,7 @@ class App extends React.Component {
       <div className="app">
         <header className="header">
           <NavBar
+            smallBrowserMode={this.props.smallBrowserMode}
             artists={this.props.artists}
             filters={this.props.searchModifiers.get('filters')}
             orderBy={this.props.searchModifiers.get('orderBy')}
@@ -79,6 +102,7 @@ class App extends React.Component {
 
 function select(state) {
   return {
+    smallBrowserMode: state.smallBrowserMode,
     searchModifiers: state.searchModifiers,
     artists: state.artists,
     showMap: state.showMap

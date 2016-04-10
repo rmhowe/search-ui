@@ -1,4 +1,5 @@
 // Action Types
+export const SET_SMALL_BROWSER_MODE = 'SET_SMALL_BROWSER_MODE';
 export const SET_FILTER = 'SET_FILTER';
 export const SET_GENDER_FILTER = 'SET_GENDER_FILTER';
 export const SET_ORDER_BY = 'SET_ORDER_BY';
@@ -9,3 +10,6 @@ export const RECEIVE_DATA = 'RECEIVE_DATA';
 // Artist properties
 export const AGE = 'age';
 export const RATE = 'rate';
+
+// Browser widths
+export const SMALL_BROWSER = 900;

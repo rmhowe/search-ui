@@ -10,3 +10,13 @@
   display: inline-block;
   font-weight: bold;
 }
+
+@media (max-width: $small-screen-size) {
+  .artist-list-item {
+    margin: 2% 2% 0 2%;
+    padding: 10px;
+    width: 96%;
+    float: left;
+    background-color: white;
+  }
+}

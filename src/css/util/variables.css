@@ -1,3 +1,5 @@
 $app-background-color: #eee;
 $header-border-color: #ccc;
 $header-height: 60px;
+
+$small-screen-size: 900px;

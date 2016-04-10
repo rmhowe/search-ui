@@ -2,12 +2,22 @@ import { combineReducers } from 'redux';
 import Immutable from 'immutable';
 
 import {
+  SET_SMALL_BROWSER_MODE,
   SET_FILTER,
   SET_GENDER_FILTER,
   SET_ORDER_BY,
   TOGGLE_MAP,
   RECEIVE_DATA
 } from '../constants';
+
+function smallBrowserMode(state = false, action) {
+  switch (action.type) {
+    case SET_SMALL_BROWSER_MODE:
+      return action.payload.active;
+    default:
+      return state;
+  }
+}
 
 function searchModifiers(state = Immutable.fromJS({
   filters: {
@@ -76,6 +86,7 @@ function showMap(state = true, action) {
 }
 
 const rootReducer = combineReducers({
+  smallBrowserMode,
   searchModifiers,
   artists,
   showMap

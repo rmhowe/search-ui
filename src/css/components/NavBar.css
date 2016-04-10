@@ -12,18 +12,34 @@
   font-size: 1.3em;
 }
 
+.nav-bar__filters {
+  position: relative;
+  width: 60%;
+  height: 100%;
+  border-right: 1px solid $header-border-color;
+  float: left;
+}
+
+.nav-bar__toggle-filters {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
 .nav-bar__map-toggle {
   position: relative;
   width: 20%;
   height: 100%;
   float: left;
+  text-align: center;
 }
 
 .nav-bar__map-toggle-text {
-  position: absolute;
+  position: relative;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
   display: inline-block;
   transition: all 200ms;
 }

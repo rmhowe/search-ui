@@ -1,7 +1,11 @@
 import React from 'react';
-import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import { GoogleMapLoader, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 export default class ArtistMap extends React.Component {
+  static propTypes = {
+    artists: React.PropTypes.object.isRequired
+  };
+
   getArtistMarkers() {
     return this.props.artists.map((artist) => {
       return (

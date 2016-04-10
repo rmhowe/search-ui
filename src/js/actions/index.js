@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 import {
+  SET_SMALL_BROWSER_MODE,
   SET_FILTER,
   SET_GENDER_FILTER,
   SET_ORDER_BY,
@@ -8,6 +9,15 @@ import {
   REQUEST_DATA,
   RECEIVE_DATA
 } from '../constants';
+
+export function setSmallBrowserMode(active) {
+  return {
+    type: SET_SMALL_BROWSER_MODE,
+    payload: {
+      active
+    }
+  };
+}
 
 export function setFilter(filter, value) {
   return {
