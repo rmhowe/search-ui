@@ -30,12 +30,12 @@ export default class NavBar extends React.Component {
     if (this.props.smallBrowserMode) {
       const text = this.state.showFilters ? 'Hide filters' : 'Show filters';
       return (
-        <span
+        <div
           className="nav-bar__toggle-filters"
           onClick={this.toggleFilters}
         >
-          {text}
-        </span>
+          <span className="nav-bar__toggle-filters-text">{text}</span>
+        </div>
       );
     } else {
       return this.getFilters();

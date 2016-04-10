@@ -48,11 +48,11 @@ export default class Filters extends React.Component {
 
     return (
       <div className="filters">
-        <div className="filters__filter">
+        <div className="filters__filter filters__range-filter">
           Age: {currentMinAge || 0} - {currentMaxAge || 100}
           {ageSlider}
         </div>
-        <div className="filters__filter">
+        <div className="filters__filter filters__range-filter">
           Rate: {currentMinRate || 0} - {currentMaxRate || 100}
           {rateSlider}
         </div>

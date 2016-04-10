@@ -15,8 +15,6 @@ export default class Artist extends React.Component {
         <span className="artist-list-item__label">Age</span> {this.props.age}<br/>
         <span className="artist-list-item__label">Gender</span> {this.props.gender}<br/>
         <span className="artist-list-item__label">Rate</span> {this.props.rate}<br/>
-        <span className="artist-list-item__label">Longitude</span> {this.props.longitude}<br/>
-        <span className="artist-list-item__label">Latitude</span> {this.props.latitude}
       </div>
     );
   }
