@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import {
   SET_FILTER,
   SET_GENDER_FILTER,
+  TOGGLE_MAP,
   RECEIVE_DATA
 } from '../constants';
 
@@ -34,8 +35,18 @@ function artists(state = Immutable.List(), action) {
   }
 }
 
+function showMap(state = true, action) {
+  switch (action.type) {
+    case TOGGLE_MAP:
+      return !state;
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   activeFilters,
-  artists
+  artists,
+  showMap
 });
 export default rootReducer;

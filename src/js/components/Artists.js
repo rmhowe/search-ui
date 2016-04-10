@@ -1,8 +1,9 @@
 import React from 'react';
-import Artist from './Artist';
+import ArtistListItem from './ArtistListItem';
+import ArtistMap from './ArtistMap';
 
-export default class ArtistList extends React.Component {
-  generateArtistList() {
+export default class Artists extends React.Component {
+  getFilteredArtists() {
     const { artists, activeFilters } = this.props;
     const [minAge, maxAge] = activeFilters.get('age').toJS();
     const [minRate, maxRate] = activeFilters.get('rate').toJS();
@@ -13,9 +14,13 @@ export default class ArtistList extends React.Component {
         && artist.get('rate') >= minRate
         && artist.get('rate') <= maxRate
         && activeFilters.getIn(['gender', artist.get('gender')]);
-    }).map((artist) => {
+    });
+  }
+
+  generateArtistList(artists) {
+    return artists.map((artist) => {
       return (
-        <Artist
+        <ArtistListItem
           key={artist.get('uuid')}
           gender={artist.get('gender')}
           age={artist.get('age')}
@@ -27,12 +32,26 @@ export default class ArtistList extends React.Component {
     });
   }
 
+  generateArtistMap(artists) {
+    return (
+      <ArtistMap
+        artists={artists}
+      />
+    );
+  }
+
   render() {
-    const artists = this.generateArtistList();
+    const filteredArtists = this.getFilteredArtists();
+    let content;
+    if (this.props.showMap) {
+      content = this.generateArtistMap(filteredArtists);
+    } else {
+      content = this.generateArtistList(filteredArtists);
+    }
 
     return (
-      <div className="artist-list">
-        {artists}
+      <div className="artists">
+        {content}
       </div>
     );
   }

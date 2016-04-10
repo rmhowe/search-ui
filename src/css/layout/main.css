@@ -6,8 +6,3 @@ body,
   height: 100%;
   background-color: $app-background-color;
 }
-
-.container {
-  width: 100%;
-  background-color: $app-background-color;
-}

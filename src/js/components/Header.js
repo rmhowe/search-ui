@@ -12,6 +12,11 @@ export default class Header extends React.Component {
           handleFilterChange={this.props.handleFilterChange}
           handleGenderFilterChange={this.props.handleGenderFilterChange}
         />
+        <div className="header__map-toggle">
+          <span className="header__map-toggle-text" onClick={this.props.handleToggleMap}>
+            Show on map <i className="fa fa-map-marker"></i>
+          </span>
+        </div>
       </div>
     );
   }

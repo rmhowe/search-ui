@@ -3,6 +3,7 @@ import fetch from 'isomorphic-fetch';
 import {
   SET_FILTER,
   SET_GENDER_FILTER,
+  TOGGLE_MAP,
   REQUEST_DATA,
   RECEIVE_DATA
 } from '../constants';
@@ -24,6 +25,13 @@ export function setGenderFilter(gender, value) {
       gender,
       value
     }
+  };
+}
+
+export function toggleMap() {
+  return {
+    type: TOGGLE_MAP,
+    payload: {}
   };
 }
 
