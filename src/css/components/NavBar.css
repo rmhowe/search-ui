@@ -10,6 +10,7 @@
   border-right: 1px solid $header-border-color;
   float: left;
   font-size: 1.3em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .nav-bar__filters {
