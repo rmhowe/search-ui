@@ -1,0 +1,60 @@
+.nav-bar {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-bar__title {
+  padding: 17px;
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid $header-border-color;
+  float: left;
+  font-size: 1.3em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-bar__filters {
+  position: relative;
+  width: 60%;
+  height: 100%;
+  border-right: 1px solid $header-border-color;
+  float: left;
+}
+
+.nav-bar__toggle-filters {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-bar__toggle-filters:hover {
+  cursor: pointer;
+}
+
+.nav-bar__toggle-filters-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+}
+
+.nav-bar__map-toggle {
+  position: relative;
+  width: 20%;
+  height: 100%;
+  float: left;
+  text-align: center;
+}
+
+.nav-bar__map-toggle-text {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  transition: all 200ms;
+}
+
+.nav-bar__map-toggle-text:hover {
+  cursor: pointer;
+  color: #999;
+}

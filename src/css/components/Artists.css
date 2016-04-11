@@ -1,0 +1,11 @@
+.artists {
+  height: 100%;
+  width: 100%;
+}
+
+.artists__limit-message {
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 0.85em;
+  font-family: 'Montserrat', sans-serif;
+}

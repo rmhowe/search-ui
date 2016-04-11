@@ -7,7 +7,17 @@ body,
   background-color: $app-background-color;
 }
 
-.container {
+.header {
+  position: fixed;
   width: 100%;
-  background-color: $app-background-color;
+  height: $header-height;
+  background-color: white;
+  border-bottom: 1px solid $header-border-color;
+  z-index: 10;
+}
+
+.main-content {
+  padding-top: $header-height;
+  height: 100%;
+  width: 100%;
 }
