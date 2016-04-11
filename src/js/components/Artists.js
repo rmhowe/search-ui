@@ -7,7 +7,8 @@ export default class Artists extends React.Component {
     artists: React.PropTypes.object.isRequired,
     filters: React.PropTypes.object.isRequired,
     orderBy: React.PropTypes.object.isRequired,
-    showMap: React.PropTypes.bool.isRequired
+    showMap: React.PropTypes.bool.isRequired,
+    limit: React.PropTypes.number.isRequired
   }
 
   getFilteredArtists() {
@@ -64,18 +65,31 @@ export default class Artists extends React.Component {
     );
   }
 
+  getLimitMessage(filteredArtists) {
+    if (filteredArtists.size > this.props.limit) {
+      return (
+        <div ref="limitMessage" className="artists__limit-message">
+          Displaying {this.props.limit} of {filteredArtists.size} possible results, try a more specific search to see the remaining results
+        </div>
+      );
+    }
+  }
+
   render() {
     const filteredArtists = this.getFilteredArtists();
+    const limitMessage = this.getLimitMessage(filteredArtists);
+    const limitedFilteredArtists = filteredArtists.take(this.props.limit);
     let content;
     if (this.props.showMap) {
-      content = this.generateArtistMap(filteredArtists);
+      content = this.generateArtistMap(limitedFilteredArtists);
     } else {
-      const orderedArtists = this.orderArtistList(filteredArtists);
+      const orderedArtists = this.orderArtistList(limitedFilteredArtists);
       content = this.generateArtistList(orderedArtists);
     }
 
     return (
       <div className="artists">
+        {limitMessage}
         {content}
       </div>
     );

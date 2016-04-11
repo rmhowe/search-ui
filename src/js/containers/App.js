@@ -93,6 +93,7 @@ class App extends React.Component {
             filters={this.props.searchModifiers.get('filters')}
             orderBy={this.props.searchModifiers.get('orderBy')}
             showMap={this.props.showMap}
+            limit={200}
           />
         </section>
       </div>

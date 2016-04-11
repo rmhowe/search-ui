@@ -28,7 +28,7 @@ export default class ArtistMap extends React.Component {
           <div
             {...this.props}
             style={{
-              height: "100%",
+              height: '100%'
             }}
           />
         }
